@@ -5,7 +5,12 @@
         <input type="text" />
       </div>
       <ul>
-        <li v-for="product in products" :key="product.id" class="item flex">
+        <li
+          v-for="product in products"
+          :key="product.id"
+          class="item flex"
+          @click="moveToDetailPage(product.id)"
+        >
           <img
             class="product-image"
             :src="product.imageUrl"
@@ -29,6 +34,11 @@ export default {
       imageUrl: `${item.imageUrl}?random=${Math.random()}`,
     }))
     return { products }
+  },
+  methods: {
+    moveToDetailPage(id) {
+      this.$router.push(`detail/${id}`)
+    },
   },
 }
 </script>
