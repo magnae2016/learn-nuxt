@@ -1,3 +1,5 @@
+import { fetchCartItems } from '~/api'
+
 export const state = () => ({
   cartItems: [],
 })
@@ -10,4 +12,18 @@ export const mutations = {
     }
     state.cartItems.push(newCartItem)
   },
+  setCartItems(state, cartItems) {
+    state.cartItems = cartItems.map((item) => ({
+      ...item,
+      imageUrl: `${item.imageUrl}?random=${Math.random()}`,
+    }))
+  },
+}
+
+export const actions = {
+  async fetchCartItems({ commit }) {
+    const { data } = await fetchCartItems()
+    commit('setCartItems', data)
+  },
+  nuxtServerInit() {},
 }

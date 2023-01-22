@@ -27,7 +27,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  async asyncData({ store }) {
+    await store.dispatch('fetchCartItems')
+  },
+}
 </script>
 
 <style scoped>
